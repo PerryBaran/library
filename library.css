@@ -1,5 +1,28 @@
 * {
     margin: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background: rgb(4, 48, 2);
+}
+
+#add {
+    margin-left: 20px;
+    aspect-ratio: 1;
+    width: 40px;
+    border: 0;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#add:hover {
+    size: 1.1;
 }
 
 #container {
@@ -16,7 +39,12 @@ form {
     width: 250px;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    background: green;
+    background: rgb(11, 107, 7);
+    color:white;
+    padding: 10px;
+    border: 0.15em solid black;
+    border-radius: 2%;
+    line-height: 1.5em;
 }
 
 #close {
@@ -27,13 +55,50 @@ form {
     opacity: 0.5;
 }
 .bookshelf {
-    display: flex;
+    display: grid;
+    columns: 5;
 }
 
+/*
 .book {
-    background: red;
     display: inline-flex;
-    border: 0.1em solid blue;
+    color: white;
+    background: rgb(11, 107, 7);
+    margin: 0.5em;
+    border: 0.15em solid black;
+    border-radius: 2%;
     aspect-ratio: 1;
     width: 14em;
+    padding: 10px;
+    line-height: 2em;
+}
+*/
+
+input {
+    width: 97%;
+}
+
+#submit {
+    width: 100%;
+}
+
+#read {
+    width: 20px;
+    height: 15px;
+  }
+
+.table {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    padding-top: 10px;
+    grid-template-columns: repeat(8, 6em);
+}
+
+.cell {
+    
+}
+
+.span2 {
+    grid-column: span 2;
 }

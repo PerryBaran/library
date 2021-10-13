@@ -12,18 +12,29 @@
     <div id="container">
         <div id="close"></div>
         <form id="form">
-            <label for="title">Title:</label>
+            <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
-            <label for="author">Author:</label>
+            <label for="author" >Author:</label><br>
             <input type="text" id="author" name="author"><br>
-            <label for="pages">Pages:</label>
-            <input type="text" id="pages" name="pages"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="number" min="1" id="pages" name="pages"><br>
             <label for="read">Read?:</label>
             <input type="checkbox" id="read" name="read"><br>
-            <input id="submit" type="button" value="Submit">
+            <input id="submit" type="button" value="Add">
         </form>
     </div>
-    <button id="add">+</button>
+    <div class="header">
+        <h1>My Library</h1>
+        <button id="add">+</button>
+    </div>
+    <div class="table">
+        <div class="cell span2">Title</div>
+        <div class="cell span2">Author</div>
+        <div class="cell">Pages</div>
+        <div class="cell">Read</div>
+        <div class="cell">Edit</div>
+        <div class="cell">Delete</div>
+    </div>
     <div id="bookshelf"></div>
 </body>
 </html>

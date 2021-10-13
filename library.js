@@ -26,9 +26,9 @@ function displayLibrary() {
 
     for (i = 0; i < myLibrary.length; i++) {
         let info = document.createElement('div');
-        info.className = 'book';
-        info.innerHTML = myLibrary[i].title + '<br>' + myLibrary[i].author + '<br>' + 
-            myLibrary[i].pages + '<br>' + myLibrary[i].read + '<br>';
+        info.className = 'table';
+        info.innerHTML = '<div class="cell span2">' + myLibrary[i].title + '</div><div class="cell span2">' + myLibrary[i].author + '</div><div class="cell">' + 
+            myLibrary[i].pages + '</div><div class="cell">' + myLibrary[i].read + '</div>';
         bookShelf.appendChild(info);
     }
 }
