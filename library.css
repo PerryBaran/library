@@ -59,21 +59,6 @@ form {
     columns: 5;
 }
 
-/*
-.book {
-    display: inline-flex;
-    color: white;
-    background: rgb(11, 107, 7);
-    margin: 0.5em;
-    border: 0.15em solid black;
-    border-radius: 2%;
-    aspect-ratio: 1;
-    width: 14em;
-    padding: 10px;
-    line-height: 2em;
-}
-*/
-
 input {
     width: 97%;
 }
@@ -92,11 +77,12 @@ input {
     justify-content: center;
     align-content: center;
     padding-top: 10px;
-    grid-template-columns: repeat(8, 6em);
+    grid-template-columns: repeat(8, 10%);
 }
 
-.cell {
-    
+.table.top {
+    background:rgb(4, 48, 2);
+    color: white;
 }
 
 .span2 {
