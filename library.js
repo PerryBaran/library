@@ -1,6 +1,3 @@
-const add = document.getElementById('add');
-const submit = document.getElementById('submit');
-const edit = document.getElementById('edit');
 const bookShelf = document.getElementById('bookshelf');
 const closeForm = document.getElementById('close');
 
@@ -27,17 +24,13 @@ function displayLibrary() {
 
     for (i = 0; i < myLibrary.length; i++) {
         let info = document.createElement('div');
-
-        if (myLibrary[i].read) {
-            checkbox = '<input type="checkbox" checked>'
-        } else {
-            checkbox = '<input type="checkbox">'
-        }
+        var checkbox = myLibrary[i].read? 'checked' : '';
+        
         info.className = 'table';
         info.innerHTML = '<div class="cell span2">' + myLibrary[i].title + '</div><div class="cell span2">'
                      + myLibrary[i].author + '</div><div class="cell">' 
                      + myLibrary[i].pages + '</div><div class="cell">'
-                     + checkbox + '</div><div class="cell">'
+                     + '<input type="checkbox" onclick ="updateRead(' + i + ')"' + checkbox + '>' + '</div><div class="cell">'
                      + '<button onclick="editBook(' + i + ')">EDIT</button></div><div class="cell">'
                      + '<button onclick="delBook(' + i + ')">DELETE</button></div>'
         
@@ -51,39 +44,57 @@ function reset(parent){
     }
 };
 
-function editBook(i){
-    document.getElementById('titleEdit').value = myLibrary[i].title;
-    document.getElementById('titleEdit').dataset.indexNumber = i;
-    document.getElementById('authorEdit').value = myLibrary[i].author;
-    document.getElementById('pagesEdit').value = myLibrary[i].pages;
-    document.getElementById('readEdit').checked = myLibrary[i].read;
-    document.querySelector('.edit').style.display = "flex";
+function updateRead(i){
+    myLibrary[i].read = myLibrary[i].read? false: true;
+    displayLibrary();
 }
+
+function editBook(i){
+    document.getElementById('title').value = myLibrary[i].title;
+    document.getElementById('title').dataset.indexNumber = i;
+    document.getElementById('author').value = myLibrary[i].author;
+    document.getElementById('pages').value = myLibrary[i].pages;
+    document.getElementById('read').checked = myLibrary[i].read;
+    showEditDelete();
+    document.querySelector('.container').style.display = "flex";
+};
 
 function delBook(i) {
     myLibrary.splice(i, 1);
     displayLibrary();
-}
+};
+
 
 function close(){
     document.querySelector('.container').style.display = "none";
-}
+};
 
+function showEditDelete() {
+    document.getElementById('edit').style.display = "inline-block";
+    document.getElementById('delete').style.display = "inline-block";
+};
+
+function hideEditDelete() {
+    document.getElementById('edit').style.display = "none";
+    document.getElementById('delete').style.display = "none";
+};
+
+function resetBookEditor() {
+    document.getElementById('title').value = '';
+    document.getElementById('title').dataset.indexNumber = null;
+    document.getElementById('author').value = '';
+    document.getElementById('pages').value = '';
+    document.getElementById('read').checked = '';
+};
+
+const add = document.getElementById('add');
 add.addEventListener('click', () => {
-    document.querySelector('.new').style.display = "flex";
+    hideEditDelete();
+    resetBookEditor()
+    document.querySelector('.container').style.display = "flex";
 });
 
-edit.addEventListener('click', () => {
-    const i = document.getElementById('titleEdit').dataset.indexNumber;
-    myLibrary[i].title = document.getElementById('titleEdit').value ;
-    myLibrary[i].author = document.getElementById('authorEdit').value;
-    myLibrary[i].pages = document.getElementById('pagesEdit').value;
-    myLibrary[i].read = document.getElementById('readEdit').checked;
-
-    document.querySelector('.edit').style.display = "none";
-    displayLibrary()
-});
-
+const submit = document.getElementById('submit');
 submit.addEventListener('click', () => {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
@@ -95,16 +106,36 @@ submit.addEventListener('click', () => {
     displayLibrary()
 });
 
+const edit = document.getElementById('edit');
+edit.addEventListener('click', () => {
+    const i = document.getElementById('title').dataset.indexNumber;
+    myLibrary[i].title = document.getElementById('title').value ;
+    myLibrary[i].author = document.getElementById('author').value;
+    myLibrary[i].pages = document.getElementById('pages').value;
+    myLibrary[i].read = document.getElementById('read').checked;
+
+    close();
+    displayLibrary()
+});
+
+const del = document.getElementById('delete');
+del.addEventListener('click', () => {
+    const i = document.getElementById('title').dataset.indexNumber;
+    myLibrary.splice(i, 1);
+        
+    resetBookEditor()
+    close();
+    displayLibrary();
+})
+
+const cancel = document.getElementById('cancel')
+cancel.addEventListener('click', () => {
+    close();
+});
 
 closeForm.addEventListener('click', () => {
    close();
 });
-
-document.querySelectorAll('.del').forEach(button => {
-    button.addEventListener('click', () => {
-        console.log('yo')
-    })
-})
 
 const theHobbit = new book('The Hobbit', 'J.R.R Tolkien', '295', false);
 const theScrobbit = new book('The Scrobbit', 'J.R.R Tolkent', '69', true);

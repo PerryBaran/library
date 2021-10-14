@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="new container">
+    <div class="container">
         <div id="close" class="close"></div>
         <form class="form">
             <label for="title">Title:</label><br>
@@ -20,21 +20,10 @@
             <input type="number" min="1" id="pages" name="pages"><br>
             <label for="read">Read?:</label>
             <input type="checkbox" id="read" name="read"><br>
-            <input id="submit" type="button" value="Add">
-        </form>
-    </div>
-    <div class="edit container">
-        <div class="close"></div>
-        <form class="form">
-            <label for="title">Title:</label><br>
-            <input type="text" id="titleEdit" name="title"><br>
-            <label for="author" >Author:</label><br>
-            <input type="text" id="authorEdit" name="author"><br>
-            <label for="pages">Pages:</label><br>
-            <input type="number" min="1" id="pagesEdit" name="pages"><br>
-            <label for="read">Read?:</label>
-            <input type="checkbox" id="readEdit" name="read"><br>
-            <input id="edit" type="button" value="EDIT">
+            <input id="submit" type="button" value="ADD">
+            <input id="edit" type="button" value="EDIT" style="display: none">
+            <input id="delete" type="button" value="DELETE" style="display: none">
+            <input id="cancel" type="button" value="CANCEL">
         </form>
     </div>
     <div class="header">
