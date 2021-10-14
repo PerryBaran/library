@@ -9,9 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="container">
-        <div id="close"></div>
-        <form id="form">
+    <div class="new container">
+        <div id="close" class="close"></div>
+        <form class="form">
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
             <label for="author" >Author:</label><br>
@@ -21,6 +21,20 @@
             <label for="read">Read?:</label>
             <input type="checkbox" id="read" name="read"><br>
             <input id="submit" type="button" value="Add">
+        </form>
+    </div>
+    <div class="edit container">
+        <div class="close"></div>
+        <form class="form">
+            <label for="title">Title:</label><br>
+            <input type="text" id="titleEdit" name="title"><br>
+            <label for="author" >Author:</label><br>
+            <input type="text" id="authorEdit" name="author"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="number" min="1" id="pagesEdit" name="pages"><br>
+            <label for="read">Read?:</label>
+            <input type="checkbox" id="readEdit" name="read"><br>
+            <input id="edit" type="button" value="EDIT">
         </form>
     </div>
     <div class="header">
@@ -35,8 +49,6 @@
             <div class="cell">Edit</div>
             <div class="cell">Delete</div>
         </div>
-    
     <div id="bookshelf"></div>
-    </div>
 </body>
 </html>

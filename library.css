@@ -25,7 +25,7 @@
     size: 1.1;
 }
 
-#container {
+.container {
     display: none;
     justify-content: center;
     align-content: center;
@@ -47,7 +47,7 @@ form {
     line-height: 1.5em;
 }
 
-#close {
+.close {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -87,4 +87,8 @@ input {
 
 .span2 {
     grid-column: span 2;
+}
+
+.cell {
+    border-bottom: 1px solid rgb(4, 48, 2);
 }
