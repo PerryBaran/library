@@ -20,6 +20,7 @@ h1 {
     display: none;
     justify-content: center;
     align-content: center;
+    z-index: 1
 }
 
 form {
@@ -35,10 +36,12 @@ form {
     border: 0.15em solid black;
     border-radius: 2%;
     line-height: 1.5em;
+    z-index: 2;
 }
 
 .close {
     position: absolute;
+    z-index: 1;
     height: 100%;
     width: 100%;
     background: black;
@@ -112,12 +115,13 @@ button:hover {
     justify-content: center;
     align-content: center;
     padding-top: 10px;
-    grid-template-columns: repeat(9, 10%);
+    grid-template-columns: repeat(9, 11%);
 }
 
 .table.top {
     background:rgb(4, 48, 2);
     color: white;
+    margin: auto;
 }
 
 .table.top .cell {
@@ -170,5 +174,6 @@ button:hover {
 }
 
 .reverse {
+    position:inherit;
     transform: rotate(180deg);
 }
