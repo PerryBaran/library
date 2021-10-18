@@ -1,18 +1,24 @@
 const bookShelf = document.getElementById('bookshelf');
 const closeForm = document.getElementById('close');
 
-let myLibrary = [];
+if (!localStorage.getItem('myLibrary')){
+    var myLibrary = [];
+} else {
+    const retrieveStorage = localStorage.getItem('myLibrary');
+    var myLibrary = JSON.parse(retrieveStorage)
+}
+
+function populateStorage() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
 
 function book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.date = new Date()
-    this.info = function() {
-        info = title + ' by ' + author + ', ' + pages + ' pages' + ', ' + read;   
-        return info;
-    }
+    this.date = new Date();
+    this.order = null;
 };
 
 function addBookToLibrary(newBook) {
@@ -22,24 +28,32 @@ function addBookToLibrary(newBook) {
 
 function displayLibrary() {
     reset(bookShelf)
+    ordering();
     sort();
-
+    populateStorage();
     for (i = 0; i < myLibrary.length; i++) {
         let info = document.createElement('div');
         var checkbox = myLibrary[i].read? 'checked' : '';
         
         info.className = 'table';
-        info.innerHTML = '<div class="cell span2">' + myLibrary[i].title + '</div><div class="cell span2">'
+        info.innerHTML = '<div class="cell">' + myLibrary[i].order + '</div><div class="cell span2">' 
+                     + myLibrary[i].title + '</div><div class="cell span2">'
                      + myLibrary[i].author + '</div><div class="cell">' 
                      + myLibrary[i].pages + '</div><div class="cell">'
                      + '<input type="checkbox" onclick ="updateRead(' + i + ')"' + checkbox + '>' + '</div><div class="cell">'
-                     + myLibrary[i].date.toString().slice(4, 21)  + '</div><div class="cell">'
                      + '<button onclick="editBook(' + i + ')">EDIT</button></div><div class="cell">'
                      + '<button onclick="delBook(' + i + ')">DELETE</button></div>'
         
         bookShelf.appendChild(info);
     }
 };
+
+function ordering(){
+    byDate();
+    for (i = 0; i < myLibrary.length; i++){
+        myLibrary[i].order = i + 1;
+    }
+}
 
 function reset(parent){
     while (parent.firstChild) {
@@ -219,14 +233,5 @@ sortInput.forEach(button => {
         displayLibrary();
     });
 });
-   
-
-const theHobbit = new book('The Hobbit', 'J.R.R Tolkien', '295', false);
-const theScrobbit = new book('The Scrobbit', 'J.R.R Tolkent', '69', true);
-const theBopit = new book('The Bopit', 'J.R.R Tokesome', '420', false);
-
-myLibrary.push(theHobbit)
-myLibrary.push(theScrobbit)
-myLibrary.push(theBopit)
 
 displayLibrary();
