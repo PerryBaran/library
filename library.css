@@ -49,7 +49,7 @@ form {
 }
 .bookshelf {
     display: grid;
-    columns: 5;
+    columns: 9;
 }
 
 input {
@@ -115,7 +115,7 @@ button:hover {
     justify-content: center;
     align-content: center;
     padding-top: 10px;
-    grid-template-columns: repeat(9, 11%);
+    grid-template-columns: repeat(9, 10%);
 }
 
 .table.top {
@@ -148,7 +148,7 @@ button:hover {
     flex-direction: column;
     text-align: center;
     min-height: 3em;
-    margin: 5px;
+    margin: 2px;
 }
 
 .cell.heading {
@@ -164,6 +164,10 @@ button:hover {
 @media  screen and (max-width: 779px) {
     .sortArrows {
         display: block;
+    }
+    
+    .cell {
+        font-size: 0.8rem;
     }
 }
 
