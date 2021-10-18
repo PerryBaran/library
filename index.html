@@ -19,7 +19,7 @@
             <label for="pages">Pages:</label><br>
             <input type="number" min="1" id="pages" name="pages"><br>
             <label for="read">Read?:</label>
-            <input type="checkbox" id="read" name="read"><br>
+            <input type="checkbox" id="read" name="read" class="checkbox"><br>
             <input id="submit" type="button" value="ADD">
             <input id="edit" type="button" value="EDIT" style="display: none">
             <input id="delete" type="button" value="DELETE" style="display: none">
@@ -37,7 +37,7 @@
                     <button class="sort reverse" id="dateReverse">^</button>
                 </div>
             </div>
-            <div class="cell span2">Title
+            <div class="cell span2 heading">Title
                 <div class="sortArrows">
                     <button class="sort" id="title">^</button>
                     <button class="sort reverse" id="titleReverse">^</button>
@@ -61,18 +61,10 @@
                     <button class="sort reverse" id="checkedReverse">^</button>
                 </div>
             </div>
-            
+            <div class="cell heading"></div>
             <div class="cell heading">
-                <div class="sortArrows">
-                    <button class="sort"></button>
-                    <button class="sort"></button>
-                </div>
-            </div>
-            <div class="cell heading">
-                <div class="sortArrows">
-                    <button class="sort"></button>
-                    <button class="sort"></button>
-                </div>
+                <button id="undo">UNDO</button>
+            </button>
             </div>
             </div>
         </div>

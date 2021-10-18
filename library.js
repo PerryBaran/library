@@ -1,17 +1,18 @@
 const bookShelf = document.getElementById('bookshelf');
-const closeForm = document.getElementById('close');
 
+//storage
 if (!localStorage.getItem('myLibrary')){
-    var myLibrary = [];
+    myLibrary = [];
 } else {
     const retrieveStorage = localStorage.getItem('myLibrary');
-    var myLibrary = JSON.parse(retrieveStorage)
+    myLibrary = JSON.parse(retrieveStorage)
 }
 
 function populateStorage() {
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
+//Create and Display Library ibrary
 function book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -23,7 +24,6 @@ function book(title, author, pages, read) {
 
 function addBookToLibrary(newBook) {
     myLibrary.push(newBook)
-    console.log(myLibrary)
 };
 
 function displayLibrary() {
@@ -35,16 +35,22 @@ function displayLibrary() {
         let info = document.createElement('div');
         var checkbox = myLibrary[i].read? 'checked' : '';
         
-        info.className = 'table';
+        info.className = 'table book';
         info.innerHTML = '<div class="cell">' + myLibrary[i].order + '</div><div class="cell span2">' 
                      + myLibrary[i].title + '</div><div class="cell span2">'
                      + myLibrary[i].author + '</div><div class="cell">' 
                      + myLibrary[i].pages + '</div><div class="cell">'
-                     + '<input type="checkbox" onclick ="updateRead(' + i + ')"' + checkbox + '>' + '</div><div class="cell">'
+                     + '<input class="checkbox" type="checkbox" onclick ="updateRead(' + i + ')"' + checkbox + '>' + '</div><div class="cell">'
                      + '<button onclick="editBook(' + i + ')">EDIT</button></div><div class="cell">'
                      + '<button onclick="delBook(' + i + ')">DELETE</button></div>'
         
         bookShelf.appendChild(info);
+    }
+};
+
+function reset(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
 };
 
@@ -55,12 +61,7 @@ function ordering(){
     }
 }
 
-function reset(parent){
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-};
-
+//book editing
 function updateRead(i){
     myLibrary[i].read = myLibrary[i].read? false: true;
     displayLibrary();
@@ -77,11 +78,24 @@ function editBook(i){
 };
 
 function delBook(i) {
+    tempLibrary.push(myLibrary[i])
     myLibrary.splice(i, 1);
     displayLibrary();
 };
 
+tempLibrary =[];
+const undo = document.getElementById('undo');
+undo.addEventListener('click', () => {
+    if (tempLibrary.length < 1) {
+        return
+    } else {
+        myLibrary.push(tempLibrary[tempLibrary.length-1])
+        tempLibrary.pop();
+        displayLibrary();
+    };
+});
 
+//edit book form functions
 function close(){
     document.querySelector('.container').style.display = "none";
 };
@@ -119,6 +133,7 @@ submit.addEventListener('click', () => {
     const read = document.getElementById('read').checked;
 
     const newBook = new book(title, author, pages, read)
+    resetBookEditor();
     addBookToLibrary(newBook);
     displayLibrary()
 });
@@ -138,11 +153,9 @@ edit.addEventListener('click', () => {
 const del = document.getElementById('delete');
 del.addEventListener('click', () => {
     const i = document.getElementById('title').dataset.indexNumber;
-    myLibrary.splice(i, 1);
-        
-    resetBookEditor()
+    delBook(i);    
+    resetBookEditor();
     close();
-    displayLibrary();
 })
 
 const cancel = document.getElementById('cancel')
@@ -150,6 +163,7 @@ cancel.addEventListener('click', () => {
     close();
 });
 
+const closeForm = document.getElementById('close');
 closeForm.addEventListener('click', () => {
    close();
 });
