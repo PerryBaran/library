@@ -12,15 +12,17 @@ function populateStorage() {
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
-//Create and Display Library ibrary
-function book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.date = new Date();
-    this.order = null;
-};
+//Create and Display Library
+class book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.date = new Date();
+        this.order = null;
+    }
+}
 
 function addBookToLibrary(newBook) {
     myLibrary.push(newBook)
