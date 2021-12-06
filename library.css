@@ -56,6 +56,10 @@ input {
     width: 97%;
 }
 
+input:invalid {
+    border: 2px solid red;
+  }
+
 .checkbox {
     height: 25px;
     aspect-ratio: 1;

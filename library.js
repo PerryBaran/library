@@ -129,15 +129,21 @@ add.addEventListener('click', () => {
 
 const submit = document.getElementById('submit');
 submit.addEventListener('click', () => {
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
-
-    const newBook = new book(title, author, pages, read)
-    resetBookEditor();
-    addBookToLibrary(newBook);
-    displayLibrary()
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const pages = document.getElementById('pages');
+    const read = document.getElementById('read');
+    if (!title.checkValidity() || !author.checkValidity() || !pages.checkValidity()) {
+        return;
+    } else {
+        reset(title);
+        reset(author);
+        reset(pages);
+        const newBook = new book(title.value, author.value, pages.value, read.checked)
+        resetBookEditor();
+        addBookToLibrary(newBook);
+        displayLibrary()
+    }
 });
 
 const edit = document.getElementById('edit');
